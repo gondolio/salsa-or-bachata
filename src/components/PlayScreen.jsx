@@ -2,62 +2,40 @@
 import React from 'react';
 import { Button, Col, Row } from 'reactstrap';
 import PropTypes from 'prop-types';
-
-/*
-To do
-1) componentDidMount() randomly choose song
-*/
+import SONGS from '../shared/songs';
 
 class PlayScreen extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      song: {
-        name: '',
-        type: '',
-      },
+      spotifyUri: '',
+      genre: '',
       isLoaded: false,
     };
   }
 
   componentDidMount() {
-    // This is just for mock up
-    // Later will actually have a list of songs to choose from that will play
-    const songs = [
-      {
-        name: 'Salsa Song 1',
-        type: 'salsa',
-      },
-      {
-        name: 'Salsa Song 2',
-        type: 'salsa',
-      },
-      {
-        name: 'Bachata Song 1',
-        type: 'bachata',
-      },
-      {
-        name: 'Bachata Song 2',
-        type: 'bachata',
-      },
-    ];
+    // First randomly choose a genre
+    const allGenres = Object.keys(SONGS);
+    const genre = allGenres[Math.floor(Math.random() * allGenres.length)];
+    const spotifyUri = SONGS[genre][Math.floor(Math.random() * SONGS[genre].length)];
 
     this.setState(
       {
-        song: songs[Math.floor(Math.random() * songs.length)],
+        spotifyUri,
+        genre,
         isLoaded: true,
       },
     );
   }
 
   checkAnswer(answer) {
-    this.props.handleGameState('finished', answer === this.state.song.type);
+    this.props.handleGameState('finished', answer === this.state.genre);
   }
 
   render() {
     if (this.state.isLoaded) {
-      console.log(this.state.song);
       return (
         <div className="App">
           <header className="App-header">
@@ -66,14 +44,22 @@ class PlayScreen extends React.Component {
             </p>
             <Row>
               <Col>
-                <Button color="danger" onClick={() => this.checkAnswer('salsa')}>Salsa</Button>
+                <Button color="danger" size="lg" onClick={() => this.checkAnswer('salsa')}>Salsa</Button>
               </Col>
               <Col>
-                <Button color="warning" onClick={() => this.checkAnswer('bachata')}>Bachata</Button>
+                <Button color="warning" size="lg" onClick={() => this.checkAnswer('bachata')}>Bachata</Button>
               </Col>
             </Row>
             <Row>
-              <h6>{`(The answer is ${this.state.song.type})`}</h6>
+              <iframe
+                src={`https://open.spotify.com/embed/track/${this.state.spotifyUri}`}
+                width="80"
+                height="80"
+                frameBorder="0"
+                allowTransparency="true"
+                allow="encrypted-media"
+                title="I am a Spotify play button"
+              />
             </Row>
           </header>
         </div>

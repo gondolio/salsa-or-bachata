@@ -10,7 +10,7 @@ function StartScreen({ handleGameState }) {
           Salsa or Bachata?
         </p>
         <Row>
-          <Button color="primary" onClick={() => handleGameState('playing')}>Play!</Button>
+          <Button color="primary" size="lg" onClick={() => handleGameState('playing')}>Play!</Button>
         </Row>
       </header>
     </div>

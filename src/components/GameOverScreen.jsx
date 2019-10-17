@@ -20,7 +20,7 @@ function GameOverScreen({ handleGameState, playerWon }) {
           {outputMessage}
         </p>
         <Row>
-          <Button color={buttonColor} onClick={() => handleGameState('starting')}>Play Again!</Button>
+          <Button color={buttonColor} size="lg" onClick={() => handleGameState('starting')}>Play Again!</Button>
         </Row>
       </header>
     </div>
