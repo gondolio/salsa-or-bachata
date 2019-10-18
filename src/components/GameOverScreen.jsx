@@ -1,5 +1,10 @@
 import React from 'react';
-import { Button, Row } from 'reactstrap';
+import {
+  Button,
+  Col,
+  Container,
+  Row,
+} from 'reactstrap';
 import PropTypes from 'prop-types';
 
 function GameOverScreen({ handleGameState, playerWon }) {
@@ -16,12 +21,18 @@ function GameOverScreen({ handleGameState, playerWon }) {
   return (
     <div className="App">
       <header className="App-header">
-        <p>
-          {outputMessage}
-        </p>
-        <Row>
-          <Button color={buttonColor} size="lg" onClick={() => handleGameState('starting')}>Play Again!</Button>
-        </Row>
+        <Container>
+          <Row className="justify-content-center">
+            <Col>
+              <h2>{outputMessage}</h2>
+            </Col>
+          </Row>
+          <Row className="justify-content-center">
+            <Col>
+              <Button color={buttonColor} size="lg" onClick={() => handleGameState('starting')}>Play Again!</Button>
+            </Col>
+          </Row>
+        </Container>
       </header>
     </div>
   );

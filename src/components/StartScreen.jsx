@@ -1,17 +1,28 @@
 import React from 'react';
-import { Button, Row } from 'reactstrap';
+import {
+  Button,
+  Col,
+  Container,
+  Row,
+} from 'reactstrap';
 import PropTypes from 'prop-types';
 
 function StartScreen({ handleGameState }) {
   return (
     <div className="App">
       <header className="App-header">
-        <p>
-          Salsa or Bachata?
-        </p>
-        <Row>
-          <Button color="primary" size="lg" onClick={() => handleGameState('playing')}>Play!</Button>
-        </Row>
+        <Container>
+          <Row className="justify-content-center">
+            <Col>
+              <h2>Salsa or Bachata?</h2>
+            </Col>
+          </Row>
+          <Row className="justify-content-center">
+            <Col>
+              <Button color="primary" size="lg" onClick={() => handleGameState('playing')}>Play!</Button>
+            </Col>
+          </Row>
+        </Container>
       </header>
     </div>
   );

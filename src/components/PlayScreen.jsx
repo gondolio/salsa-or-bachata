@@ -1,6 +1,11 @@
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
-import { Button, Col, Row } from 'reactstrap';
+import {
+  Button,
+  Col,
+  Container,
+  Row,
+} from 'reactstrap';
 import PropTypes from 'prop-types';
 import SONGS from '../shared/songs';
 
@@ -39,28 +44,39 @@ class PlayScreen extends React.Component {
       return (
         <div className="App">
           <header className="App-header">
-            <p>
-              What type of song is playing?
-            </p>
-            <Row>
-              <Col>
-                <Button color="danger" size="lg" onClick={() => this.checkAnswer('salsa')}>Salsa</Button>
-              </Col>
-              <Col>
-                <Button color="warning" size="lg" onClick={() => this.checkAnswer('bachata')}>Bachata</Button>
-              </Col>
-            </Row>
-            <Row>
-              <iframe
-                src={`https://open.spotify.com/embed/track/${this.state.spotifyUri}`}
-                width="80"
-                height="80"
-                frameBorder="0"
-                allowTransparency="true"
-                allow="encrypted-media"
-                title="I am a Spotify play button"
-              />
-            </Row>
+            <Container>
+              <Row className="justify-content-center">
+                <Col>
+                  <h2>What type of song is playing?</h2>
+                </Col>
+              </Row>
+              <Row className="justify-content-center">
+                <Col />
+                <Col>
+                  <Button color="danger" size="lg" onClick={() => this.checkAnswer('salsa')}>Salsa</Button>
+                </Col>
+                <Col>
+                  <Button color="warning" size="lg" onClick={() => this.checkAnswer('bachata')}>Bachata</Button>
+                </Col>
+                <Col />
+              </Row>
+              <Row>
+                <br />
+              </Row>
+              <Row className="justify-content-center">
+                <Col>
+                  <iframe
+                    src={`https://open.spotify.com/embed/track/${this.state.spotifyUri}`}
+                    width="80"
+                    height="80"
+                    frameBorder="0"
+                    allowTransparency="true"
+                    allow="encrypted-media"
+                    title="I am a Spotify play button"
+                  />
+                </Col>
+              </Row>
+            </Container>
           </header>
         </div>
       );
