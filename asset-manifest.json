@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/salsa-or-bachata/static/css/main.b100e6da.chunk.css",
+    "main.js": "/salsa-or-bachata/static/js/main.ea12ff79.chunk.js",
+    "main.js.map": "/salsa-or-bachata/static/js/main.ea12ff79.chunk.js.map",
+    "runtime-main.js": "/salsa-or-bachata/static/js/runtime-main.c7a07b18.js",
+    "runtime-main.js.map": "/salsa-or-bachata/static/js/runtime-main.c7a07b18.js.map",
+    "static/css/2.510409cd.chunk.css": "/salsa-or-bachata/static/css/2.510409cd.chunk.css",
+    "static/js/2.f7dd3b1c.chunk.js": "/salsa-or-bachata/static/js/2.f7dd3b1c.chunk.js",
+    "static/js/2.f7dd3b1c.chunk.js.map": "/salsa-or-bachata/static/js/2.f7dd3b1c.chunk.js.map",
+    "index.html": "/salsa-or-bachata/index.html",
+    "precache-manifest.8c12f22c348b060b64e018c66d41093a.js": "/salsa-or-bachata/precache-manifest.8c12f22c348b060b64e018c66d41093a.js",
+    "service-worker.js": "/salsa-or-bachata/service-worker.js",
+    "static/css/2.510409cd.chunk.css.map": "/salsa-or-bachata/static/css/2.510409cd.chunk.css.map",
+    "static/css/main.b100e6da.chunk.css.map": "/salsa-or-bachata/static/css/main.b100e6da.chunk.css.map"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c7a07b18.js",
+    "static/css/2.510409cd.chunk.css",
+    "static/js/2.f7dd3b1c.chunk.js",
+    "static/css/main.b100e6da.chunk.css",
+    "static/js/main.ea12ff79.chunk.js"
+  ]
+}
