@@ -2,7 +2,6 @@ const SONGS = {
   salsa: [
     // Oren's songs from https://open.spotify.com/user/orenso/playlist/5ahnssobNZ1j6js1XtEcfa?si=yRKm0EyqQnqEOiZpqOY9xA
     '11i880AC0EIX8azPooV52r',
-    '6lYQ4C984n4eEHViYyglAg',
     '7ilVeP52B7yBCOz4fPQMVE',
     '5M830cD7MNeiiwIGHzH9TV',
     '4aWmUDTfIPGksMNLV2rQP2',
