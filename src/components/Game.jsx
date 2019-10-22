@@ -3,6 +3,7 @@ import React from 'react';
 import StartScreen from './StartScreen';
 import PlayScreen from './PlayScreen';
 import GameOverScreen from './GameOverScreen';
+// import OptionsModal from './OptionsModal';
 
 class Game extends React.Component {
   constructor(props) {
@@ -11,6 +12,13 @@ class Game extends React.Component {
     this.state = {
       gameState: 'starting',
       playerWon: false,
+      genreIsEnabled: {
+        salsa: true,
+        bachata: true,
+        merengue: false,
+        reggaeton: false,
+        kizomba: false,
+      },
     };
 
     this.handleGameState = this.handleGameState.bind(this);
@@ -32,7 +40,12 @@ class Game extends React.Component {
 
   render() {
     if (this.state.gameState === 'playing') {
-      return <PlayScreen handleGameState={this.handleGameState} />;
+      return (
+        <PlayScreen
+          handleGameState={this.handleGameState}
+          genreIsEnabled={this.state.genreIsEnabled}
+        />
+      );
     }
 
     if (this.state.gameState === 'finished') {

@@ -9,6 +9,7 @@ import {
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
+import STYLES from './Styles';
 import SONGS from '../shared/songs';
 
 class PlayScreen extends React.Component {
@@ -19,13 +20,6 @@ class PlayScreen extends React.Component {
       spotifyUri: '',
       genre: '',
       isLoaded: false,
-      genreIsEnabled: {
-        salsa: true,
-        bachata: true,
-        merengue: false,
-        reggaeton: false,
-        kizomba: false,
-      },
     };
 
     this.answerButtons = this.answerButtons.bind(this);
@@ -48,11 +42,11 @@ class PlayScreen extends React.Component {
   }
 
   disabledGenres() {
-    return (_.keys(_.omitBy(this.state.genreIsEnabled, (a) => a)));
+    return (_.keys(_.omitBy(this.props.genreIsEnabled, (a) => a)));
   }
 
   enabledGenres() {
-    return (_.keys(_.pickBy(this.state.genreIsEnabled, (a) => a)));
+    return (_.keys(_.pickBy(this.props.genreIsEnabled, (a) => a)));
   }
 
   answerButtons() {
@@ -66,16 +60,10 @@ class PlayScreen extends React.Component {
 
     const enabledGenres = this.enabledGenres();
 
-    // Add spacing between buttons in vertical button group
-    const buttonStyle = {
-      marginBottom: '10px',
-      borderRadius: '10px',
-    };
-
     const buttons = enabledGenres.map((genre) => (
       <Button
         key={`${genre} answer button`}
-        style={buttonStyle}
+        style={STYLES.genreButton}
         color={preferredButtonColors[genre] || 'secondary'}
         size="lg"
         onClick={() => this.checkAnswer(genre)}
@@ -133,6 +121,7 @@ class PlayScreen extends React.Component {
 
 PlayScreen.propTypes = {
   handleGameState: PropTypes.func.isRequired,
+  genreIsEnabled: PropTypes.shape.isRequired,
 };
 
 export default PlayScreen;
