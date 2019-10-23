@@ -41,30 +41,18 @@ class PlayScreen extends React.Component {
     );
   }
 
-  disabledGenres() {
-    return (_.keys(_.omitBy(this.props.genreIsEnabled, (a) => a)));
-  }
-
   enabledGenres() {
     return (_.keys(_.pickBy(this.props.genreIsEnabled, (a) => a)));
   }
 
   answerButtons() {
-    const preferredButtonColors = {
-      salsa: 'danger',
-      bachata: 'warning',
-      merengue: 'secondary',
-      reggaeton: 'light',
-      kizomba: 'info',
-    };
-
     const enabledGenres = this.enabledGenres();
 
     const buttons = enabledGenres.map((genre) => (
       <Button
         key={`${genre} answer button`}
         style={STYLES.genreButton}
-        color={preferredButtonColors[genre] || 'secondary'}
+        color={STYLES.genreButtonPreferredColors[genre] || 'secondary'}
         size="lg"
         onClick={() => this.checkAnswer(genre)}
       >
@@ -84,34 +72,30 @@ class PlayScreen extends React.Component {
   render() {
     if (this.state.isLoaded) {
       return (
-        <div className="App">
-          <header className="App-header">
-            <Container fluid>
-              <Row className="justify-content-center">
-                <Col>
-                  <h2>What type of song is playing?</h2>
-                </Col>
-              </Row>
-              <Row className="justify-content-center">
-                <Col>
-                  {this.answerButtons()}
-                </Col>
-              </Row>
-              <Row className="justify-content-center">
-                <Col>
-                  <iframe
-                    src={`https://open.spotify.com/embed/track/${this.state.spotifyUri}`}
-                    width="80"
-                    height="80"
-                    frameBorder="0"
-                    allow="encrypted-media"
-                    title="I am a Spotify play button"
-                  />
-                </Col>
-              </Row>
-            </Container>
-          </header>
-        </div>
+        <Container>
+          <Row>
+            <Col>
+              <h2>What type of song is playing?</h2>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              {this.answerButtons()}
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <iframe
+                src={`https://open.spotify.com/embed/track/${this.state.spotifyUri}`}
+                width="80"
+                height="80"
+                frameBorder="0"
+                allow="encrypted-media"
+                title="I am a Spotify play button"
+              />
+            </Col>
+          </Row>
+        </Container>
       );
     }
 
@@ -121,7 +105,11 @@ class PlayScreen extends React.Component {
 
 PlayScreen.propTypes = {
   handleGameState: PropTypes.func.isRequired,
-  genreIsEnabled: PropTypes.shape.isRequired,
+  genreIsEnabled: PropTypes.shape({}),
+};
+
+PlayScreen.defaultProps = {
+  genreIsEnabled: {},
 };
 
 export default PlayScreen;

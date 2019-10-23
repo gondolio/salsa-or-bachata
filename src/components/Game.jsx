@@ -3,7 +3,7 @@ import React from 'react';
 import StartScreen from './StartScreen';
 import PlayScreen from './PlayScreen';
 import GameOverScreen from './GameOverScreen';
-// import OptionsModal from './OptionsModal';
+import OptionsModal from './OptionsModal';
 
 class Game extends React.Component {
   constructor(props) {
@@ -22,8 +22,11 @@ class Game extends React.Component {
     };
 
     this.handleGameState = this.handleGameState.bind(this);
-    // this.resetGame = this.resetGame.bind(this);
-    // this.evaluateInput = this.evaluateInput.bind(this);
+    this.setEnabledGenres = this.setEnabledGenres.bind(this);
+  }
+
+  setEnabledGenres(genreIsEnabled) {
+    this.setState({ genreIsEnabled });
   }
 
   handleGameState(
@@ -37,6 +40,7 @@ class Game extends React.Component {
       },
     );
   }
+
 
   render() {
     if (this.state.gameState === 'playing') {
@@ -57,7 +61,15 @@ class Game extends React.Component {
       );
     }
 
-    return <StartScreen handleGameState={this.handleGameState} />;
+    return (
+      <>
+        <StartScreen handleGameState={this.handleGameState} />
+        <OptionsModal
+          genreIsEnabled={this.state.genreIsEnabled}
+          setEnabledGenres={this.setEnabledGenres}
+        />
+      </>
+    );
   }
 }
 

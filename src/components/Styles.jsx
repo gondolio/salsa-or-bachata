@@ -4,8 +4,17 @@ const genreButton = {
   borderRadius: '10px',
 };
 
+const genreButtonPreferredColors = {
+  salsa: 'danger',
+  bachata: 'warning',
+  merengue: 'secondary',
+  reggaeton: 'light',
+  kizomba: 'info',
+};
+
 const STYLES = {
   genreButton,
+  genreButtonPreferredColors,
 };
 
 export default STYLES;

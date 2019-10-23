@@ -19,22 +19,18 @@ function GameOverScreen({ handleGameState, playerWon }) {
   }
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <Container>
-          <Row className="justify-content-center">
-            <Col>
-              <h2>{outputMessage}</h2>
-            </Col>
-          </Row>
-          <Row className="justify-content-center">
-            <Col>
-              <Button color={buttonColor} size="lg" onClick={() => handleGameState('starting')}>Play Again!</Button>
-            </Col>
-          </Row>
-        </Container>
-      </header>
-    </div>
+    <Container>
+      <Row>
+        <Col>
+          <h2>{outputMessage}</h2>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <Button color={buttonColor} size="lg" onClick={() => handleGameState('starting')}>Play Again!</Button>
+        </Col>
+      </Row>
+    </Container>
   );
 }
 

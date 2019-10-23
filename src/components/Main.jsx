@@ -6,7 +6,7 @@ function Main() {
   ReactGA.initialize('UA-150417728-1');
   ReactGA.pageview('/main');
   return (
-    <div className="App">
+    <div className="App minHeight100vh">
       <Game />
     </div>
   );
