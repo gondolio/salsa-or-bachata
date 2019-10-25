@@ -28,7 +28,6 @@ class PlayScreen extends React.Component {
 
   componentDidMount() {
     // First randomly choose a genre
-    // eslint-disable-next-line react/no-access-state-in-setstate
     const genre = _.sample(this.enabledGenres());
     const spotifyUri = _.sample(_.uniq(SONGS[genre]));
 
