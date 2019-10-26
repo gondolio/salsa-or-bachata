@@ -28,6 +28,7 @@ class OptionsModal extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.optionButtons = this.optionButtons.bind(this);
     this.handleOptionButtonClick = this.handleOptionButtonClick.bind(this);
+    this.resetModal = this.resetModal.bind(this);
   }
 
   toggleModal() {
@@ -78,6 +79,10 @@ class OptionsModal extends React.Component {
     return buttonGroup;
   }
 
+  resetModal() {
+    this.setState({ genreButtonIsEnabled: this.props.genreIsEnabled });
+  }
+
   render() {
     return (
       <div style={{ marginTop: '20px' }}>
@@ -87,6 +92,7 @@ class OptionsModal extends React.Component {
           size="sm"
           centered
           toggle={this.toggleModal}
+          onClosed={this.resetModal} // Don't want genre buttons to persist once modal closes
         >
           <form className="App" onSubmit={this.handleSubmit}>
             <ModalHeader>Choose Genres</ModalHeader>
