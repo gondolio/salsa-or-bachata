@@ -5,7 +5,7 @@ import StartScreen from './StartScreen';
 import PlayScreen from './PlayScreen';
 import GameOverScreen from './GameOverScreen';
 import OptionsModal from './OptionsModal';
-import * as Genres from './util/Genres';
+import * as Genres from '../util/GenreUtils';
 
 class Game extends React.Component {
   constructor(props) {

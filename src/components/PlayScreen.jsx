@@ -10,7 +10,7 @@ import {
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import Songs from '../config/Songs';
-import * as Genres from './util/Genres';
+import * as Genres from '../util/GenreUtils';
 
 class PlayScreen extends React.Component {
   constructor(props) {

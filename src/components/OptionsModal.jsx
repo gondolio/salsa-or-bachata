@@ -13,7 +13,7 @@ import {
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
-import * as Genres from './util/Genres';
+import * as Genres from '../util/GenreUtils';
 
 class OptionsModal extends React.Component {
   constructor(props) {
