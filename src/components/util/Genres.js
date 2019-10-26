@@ -43,11 +43,7 @@ export function genreOrder(genre) {
   return _.get(genreMasterConfig, [genre, 'order'], Number.MAX_SAFE_INTEGER);
 }
 
-export function allGenres() {
-  return _.keys(genreMasterConfig);
-}
-
-export function sortedGenres(genres = allGenres()) {
+export function sortedGenres(genres = _.keys(genreMasterConfig)) {
   return (
     genres.sort((a, b) => (
       genreOrder(a) - genreOrder(b)

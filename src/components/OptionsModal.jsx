@@ -60,7 +60,7 @@ class OptionsModal extends React.Component {
   }
 
   optionButtons() {
-    const buttons = Genres.allGenres().map((genre) => (
+    const buttons = Genres.sortedGenres().map((genre) => (
       <Button
         key={`${genre} answer button`}
         style={Genres.genreButtonStyle}
