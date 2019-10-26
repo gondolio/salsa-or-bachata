@@ -9,8 +9,8 @@ import {
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
-import STYLES from './Styles';
-import SONGS from '../shared/songs';
+import Songs from '../config/Songs';
+import * as Genres from './util/Genres';
 
 class PlayScreen extends React.Component {
   constructor(props) {
@@ -23,13 +23,12 @@ class PlayScreen extends React.Component {
     };
 
     this.answerButtons = this.answerButtons.bind(this);
-    this.enabledGenres = this.enabledGenres.bind(this);
   }
 
   componentDidMount() {
     // First randomly choose a genre
-    const genre = _.sample(this.enabledGenres());
-    const spotifyUri = _.sample(_.uniq(SONGS[genre]));
+    const genre = _.sample(this.props.enabledGenres());
+    const spotifyUri = _.sample(_.uniq(Songs[genre]));
 
     this.setState(
       {
@@ -40,18 +39,14 @@ class PlayScreen extends React.Component {
     );
   }
 
-  enabledGenres() {
-    return (_.keys(_.pickBy(this.props.genreIsEnabled, (a) => a)));
-  }
-
   answerButtons() {
-    const enabledGenres = this.enabledGenres();
+    const enabledGenres = this.props.enabledGenres();
 
     const buttons = enabledGenres.map((genre) => (
       <Button
         key={`${genre} answer button`}
-        style={STYLES.genreButton}
-        color={STYLES.genreButtonPreferredColors[genre] || 'secondary'}
+        style={Genres.genreButtonStyle}
+        color={Genres.genreColor(genre)}
         size="lg"
         onClick={() => this.checkAnswer(genre)}
       >
@@ -104,11 +99,7 @@ class PlayScreen extends React.Component {
 
 PlayScreen.propTypes = {
   handleGameState: PropTypes.func.isRequired,
-  genreIsEnabled: PropTypes.shape({}),
-};
-
-PlayScreen.defaultProps = {
-  genreIsEnabled: {},
+  enabledGenres: PropTypes.func.isRequired,
 };
 
 export default PlayScreen;

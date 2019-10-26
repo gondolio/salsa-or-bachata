@@ -1,4 +1,4 @@
-const SONGS = {
+const Songs = {
   salsa: [
     // Oren's songs from https://open.spotify.com/user/orenso/playlist/5ahnssobNZ1j6js1XtEcfa?si=yRKm0EyqQnqEOiZpqOY9xA
     '11i880AC0EIX8azPooV52r',
@@ -385,4 +385,4 @@ const SONGS = {
   ],
 };
 
-export default SONGS;
+export default Songs;

@@ -1,9 +1,11 @@
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
+import _ from 'lodash';
 import StartScreen from './StartScreen';
 import PlayScreen from './PlayScreen';
 import GameOverScreen from './GameOverScreen';
 import OptionsModal from './OptionsModal';
+import * as Genres from './util/Genres';
 
 class Game extends React.Component {
   constructor(props) {
@@ -12,21 +14,26 @@ class Game extends React.Component {
     this.state = {
       gameState: 'starting',
       playerWon: false,
-      genreIsEnabled: {
-        salsa: true,
-        bachata: true,
-        merengue: false,
-        reggaeton: false,
-        kizomba: false,
-      },
+      genreIsEnabled: Genres.genreIsEnabledDefault(),
     };
 
     this.handleGameState = this.handleGameState.bind(this);
-    this.setEnabledGenres = this.setEnabledGenres.bind(this);
+    this.setGenreIsEnabled = this.setGenreIsEnabled.bind(this);
+    this.enabledGenres = this.enabledGenres.bind(this);
   }
 
-  setEnabledGenres(genreIsEnabled) {
+  setGenreIsEnabled(genreIsEnabled) {
     this.setState({ genreIsEnabled });
+  }
+
+  enabledGenres() {
+    return (
+      Genres.sortedGenres(
+        _.keys(
+          _.pickBy(this.state.genreIsEnabled, _.identity),
+        ),
+      )
+    );
   }
 
   handleGameState(
@@ -48,7 +55,7 @@ class Game extends React.Component {
         <>
           <PlayScreen
             handleGameState={this.handleGameState}
-            genreIsEnabled={this.state.genreIsEnabled}
+            enabledGenres={this.enabledGenres}
             key={JSON.stringify(this.state.genreIsEnabled)}
             /* OptionsModal can change this.state.genreIsEnabled
                When this happens we want PlayScreen to be reset.
@@ -59,7 +66,7 @@ class Game extends React.Component {
           />
           <OptionsModal
             genreIsEnabled={this.state.genreIsEnabled}
-            setEnabledGenres={this.setEnabledGenres}
+            setGenreIsEnabled={this.setGenreIsEnabled}
           />
         </>
       );
@@ -79,7 +86,7 @@ class Game extends React.Component {
         <StartScreen handleGameState={this.handleGameState} />
         <OptionsModal
           genreIsEnabled={this.state.genreIsEnabled}
-          setEnabledGenres={this.setEnabledGenres}
+          setGenreIsEnabled={this.setGenreIsEnabled}
         />
       </>
     );

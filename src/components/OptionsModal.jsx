@@ -13,7 +13,7 @@ import {
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
-import STYLES from './Styles';
+import * as Genres from './util/Genres';
 
 class OptionsModal extends React.Component {
   constructor(props) {
@@ -38,7 +38,7 @@ class OptionsModal extends React.Component {
 
   handleSubmit() {
     this.toggleModal();
-    this.props.setEnabledGenres(this.state.genreButtonIsEnabled);
+    this.props.setGenreIsEnabled(this.state.genreButtonIsEnabled);
   }
 
   handleOptionButtonClick(genre) {
@@ -60,11 +60,11 @@ class OptionsModal extends React.Component {
   }
 
   optionButtons() {
-    const buttons = _.keys(this.props.genreIsEnabled).map((genre) => (
+    const buttons = Genres.allGenres().map((genre) => (
       <Button
         key={`${genre} answer button`}
-        style={STYLES.genreButton}
-        color={STYLES.genreButtonPreferredColors[genre] || 'secondary'}
+        style={Genres.genreButtonStyle}
+        color={Genres.genreColor(genre)}
         size="lg"
         onClick={() => this.handleOptionButtonClick(genre)}
         outline={!this.state.genreButtonIsEnabled[genre]}
@@ -117,7 +117,7 @@ class OptionsModal extends React.Component {
 
 OptionsModal.propTypes = {
   genreIsEnabled: PropTypes.shape({}),
-  setEnabledGenres: PropTypes.func.isRequired,
+  setGenreIsEnabled: PropTypes.func.isRequired,
 };
 
 OptionsModal.defaultProps = {
