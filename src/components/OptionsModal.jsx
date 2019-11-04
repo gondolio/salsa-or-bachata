@@ -63,6 +63,7 @@ class OptionsModal extends React.Component {
   optionButtons() {
     const buttons = Genres.sortedGenres().map((genre) => (
       <Button
+        className={this.state.genreButtonIsEnabled[genre] ? '' : 'disabled'}
         key={`${genre} answer button`}
         style={Genres.genreButtonStyle}
         color={Genres.genreColor(genre)}
