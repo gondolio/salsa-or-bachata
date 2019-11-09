@@ -9,6 +9,7 @@ import {
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
+import SpotifyPlayButton from './SpotifyPlayButton';
 import Songs from '../config/Songs';
 import * as Genres from '../util/GenreUtils';
 
@@ -79,14 +80,7 @@ class PlayScreen extends React.Component {
           </Row>
           <Row>
             <Col>
-              <iframe
-                src={`https://open.spotify.com/embed/track/${this.state.spotifyUri}`}
-                width="80"
-                height="80"
-                frameBorder="0"
-                allow="encrypted-media"
-                title="I am a Spotify play button"
-              />
+              <SpotifyPlayButton spotifyUri={this.state.spotifyUri} tiny />
             </Col>
           </Row>
         </Container>
