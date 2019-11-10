@@ -30,7 +30,7 @@ function GameOverScreen({ handleGameState, playerWon, lastGenre, lastSpotifyUri 
       </Row>
       <Row>
         <Col>
-          <Button color={buttonColor} size="lg" onClick={() => handleGameState('starting')}>Play Again!</Button>
+          <Button color={buttonColor} size="lg" onClick={() => handleGameState('playing')}>Play Again!</Button>
         </Col>
       </Row>
       <Row style={{ marginTop: '20px' }}>
