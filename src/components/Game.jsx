@@ -15,6 +15,8 @@ class Game extends React.Component {
       gameState: 'starting',
       playerWon: false,
       genreIsEnabled: Genres.genreIsEnabledDefault(),
+      lastSpotifyUri: '',
+      lastGenre: '',
     };
 
     this.handleGameState = this.handleGameState.bind(this);
@@ -38,12 +40,18 @@ class Game extends React.Component {
 
   handleGameState(
     gameState,
-    playerWon = false,
+    {
+      playerWon = this.state.playerWon,
+      lastGenre = this.state.lastGenre,
+      lastSpotifyUri = this.state.lastSpotifyUri,
+    } = {},
   ) {
     this.setState(
       {
         gameState,
         playerWon,
+        lastGenre,
+        lastSpotifyUri,
       },
     );
   }
@@ -77,6 +85,8 @@ class Game extends React.Component {
         <GameOverScreen
           handleGameState={this.handleGameState}
           playerWon={this.state.playerWon}
+          lastSpotifyUri={this.state.lastSpotifyUri}
+          lastGenre={this.state.lastGenre}
         />
       );
     }

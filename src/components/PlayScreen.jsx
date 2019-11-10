@@ -61,7 +61,14 @@ class PlayScreen extends React.Component {
   }
 
   checkAnswer(answer) {
-    this.props.handleGameState('finished', answer === this.state.genre);
+    this.props.handleGameState(
+      'finished',
+      {
+        playerWon: answer === this.state.genre,
+        lastGenre: this.state.genre,
+        lastSpotifyUri: this.state.spotifyUri,
+      },
+    );
   }
 
   render() {

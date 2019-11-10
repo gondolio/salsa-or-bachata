@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 import {
   Button,
   Col,
@@ -6,8 +7,9 @@ import {
   Row,
 } from 'reactstrap';
 import PropTypes from 'prop-types';
+import SpotifyPlayButton from './SpotifyPlayButton';
 
-function GameOverScreen({ handleGameState, playerWon }) {
+function GameOverScreen({ handleGameState, playerWon, lastGenre, lastSpotifyUri }) {
   let outputMessage;
   let buttonColor;
   if (playerWon) {
@@ -18,6 +20,7 @@ function GameOverScreen({ handleGameState, playerWon }) {
     buttonColor = 'danger';
   }
 
+  const lastGenreMessage = `(It was a ${_.startCase(lastGenre)} song)`;
   return (
     <Container>
       <Row>
@@ -30,6 +33,16 @@ function GameOverScreen({ handleGameState, playerWon }) {
           <Button color={buttonColor} size="lg" onClick={() => handleGameState('starting')}>Play Again!</Button>
         </Col>
       </Row>
+      <Row style={{ marginTop: '20px' }}>
+        <Col>
+          <h6><i>{lastGenreMessage}</i></h6>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <SpotifyPlayButton spotifyUri={lastSpotifyUri} />
+        </Col>
+      </Row>
     </Container>
   );
 }
@@ -37,6 +50,8 @@ function GameOverScreen({ handleGameState, playerWon }) {
 GameOverScreen.propTypes = {
   handleGameState: PropTypes.func.isRequired,
   playerWon: PropTypes.bool.isRequired,
+  lastSpotifyUri: PropTypes.string.isRequired,
+  lastGenre: PropTypes.string.isRequired,
 };
 
 export default GameOverScreen;
