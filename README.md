@@ -1,7 +1,8 @@
-A simple React web-based game to train the ear (and my React skills) to distinguish different genres of (mostly) Latin dance music.
+#### A simple React web-based game to train the ear (and my React skills) to distinguish different genres of (mostly) Latin dance music
 
 You can see it live here:\
 https://salsaorbachata.com/
+
 
 
 Useful resources:
