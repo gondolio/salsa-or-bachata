@@ -9,7 +9,12 @@ import {
 import PropTypes from 'prop-types';
 import SpotifyPlayButton from './SpotifyPlayButton';
 
-function GameOverScreen({ handleGameState, playerWon, lastGenre, lastSpotifyUri }) {
+function GameOverScreen({
+  handleGameState,
+  playerWon,
+  lastGenre,
+  lastSpotifyUri,
+}) {
   let outputMessage;
   let buttonColor;
   if (playerWon) {
