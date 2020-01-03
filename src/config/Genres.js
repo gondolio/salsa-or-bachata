@@ -10,17 +10,17 @@ const GenreMasterConfig = {
     enabled: true,
   },
   merengue: {
-    color: 'yellow',
+    color: 'green',
     order: 2,
-    enabled: false,
-  },
-  reggaeton: {
-    color: 'pink',
-    order: 3,
     enabled: false,
   },
   kizomba: {
     color: 'indigo',
+    order: 3,
+    enabled: false,
+  },
+  reggaeton: {
+    color: 'pink',
     order: 4,
     enabled: false,
   },

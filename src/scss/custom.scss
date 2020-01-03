@@ -2,13 +2,18 @@
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
 
+// Re-defining orange to an imperceptibly darker color than the Bootstrap default
+// So that the button text is $light
+// See https://github.com/gondolio/salsa-or-bachata/issues/17 to understand why
+$orange: #fd7A14;
+
 // Add our custom theme colors to the map
 $theme-colors: (
+  green: $green,
   indigo: $indigo,
   orange: $orange,
   pink: $pink,
   red: $red,
-  yellow: $yellow,
 );
 
 // Import Bootstrap and its default variables, which will incorporate the above
