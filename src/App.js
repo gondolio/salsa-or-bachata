@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import Main from './components/Main';
-import './App.css';
+import './scss/App.scss';
 
 function App() {
   return (
