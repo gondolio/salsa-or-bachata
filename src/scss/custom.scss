@@ -1,2 +1,15 @@
+/* import the necessary Bootstrap files */
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+
+// Add our custom theme colors to the map
+$theme-colors: (
+  indigo: $indigo,
+  orange: $orange,
+  pink: $pink,
+  red: $red,
+  yellow: $yellow,
+);
+
 // Import Bootstrap and its default variables, which will incorporate the above
 @import '~bootstrap/scss/bootstrap.scss';

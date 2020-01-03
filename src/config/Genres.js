@@ -1,26 +1,26 @@
 const GenreMasterConfig = {
   salsa: {
-    color: 'danger', // Color for buttons etc
+    color: 'red', // Color for buttons etc
     order: 0, // Sort order in a list
     enabled: true, // The default for whether the genre is enabled in the game
   },
   bachata: {
-    color: 'warning',
+    color: 'orange',
     order: 1,
     enabled: true,
   },
   merengue: {
-    color: 'secondary',
+    color: 'yellow',
     order: 2,
     enabled: false,
   },
   reggaeton: {
-    color: 'light',
+    color: 'pink',
     order: 3,
     enabled: false,
   },
   kizomba: {
-    color: 'info',
+    color: 'indigo',
     order: 4,
     enabled: false,
   },
