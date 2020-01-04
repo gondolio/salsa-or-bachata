@@ -9,6 +9,7 @@ import {
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
+import { withTranslation } from 'react-i18next';
 import SpotifyPlayButton from './SpotifyPlayButton';
 import Songs from '../config/Songs';
 import * as Genres from '../util/GenreUtils';
@@ -72,12 +73,14 @@ class PlayScreen extends React.Component {
   }
 
   render() {
+    // eslint-disable-next-line react/prop-types
+    const { t } = this.props;
     if (this.state.isLoaded) {
       return (
         <Container>
           <Row>
             <Col>
-              <h2>What type of song is playing?</h2>
+              <h2>{t('What type of song is playing?')}</h2>
             </Col>
           </Row>
           <Row>
@@ -103,4 +106,4 @@ PlayScreen.propTypes = {
   enabledGenres: PropTypes.func.isRequired,
 };
 
-export default PlayScreen;
+export default withTranslation()(PlayScreen);

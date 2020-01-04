@@ -13,6 +13,7 @@ import {
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
+import { withTranslation } from 'react-i18next';
 import * as Genres from '../util/GenreUtils';
 
 class OptionsModal extends React.Component {
@@ -85,9 +86,11 @@ class OptionsModal extends React.Component {
   }
 
   render() {
+    // eslint-disable-next-line react/prop-types
+    const { t } = this.props;
     return (
       <div style={{ marginTop: '20px' }}>
-        <Button color="link" onClick={this.toggleModal}>Options</Button>
+        <Button color="link" onClick={this.toggleModal}>{t('Options')}</Button>
         <Modal
           isOpen={this.state.isModalOpen}
           size="sm"
@@ -96,7 +99,7 @@ class OptionsModal extends React.Component {
           onClosed={this.resetModal} // Don't want genre buttons to persist once modal closes
         >
           <form className="App" onSubmit={this.handleSubmit}>
-            <ModalHeader>Choose Genres</ModalHeader>
+            <ModalHeader>{t('Choose Genres')}</ModalHeader>
             <ModalBody>
               <Container fluid>
                 <Row>
@@ -110,7 +113,7 @@ class OptionsModal extends React.Component {
               <Container fluid>
                 <Row className="justify-content-center">
                   <Col>
-                    <Button color="primary" onClick={this.handleSubmit}>Done</Button>
+                    <Button color="primary" onClick={this.handleSubmit}>{t('Done')}</Button>
                   </Col>
                 </Row>
               </Container>
@@ -131,4 +134,4 @@ OptionsModal.defaultProps = {
   genreIsEnabled: {},
 };
 
-export default OptionsModal;
+export default withTranslation()(OptionsModal);

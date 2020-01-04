@@ -6,18 +6,22 @@ import {
   Row,
 } from 'reactstrap';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
+
 
 function StartScreen({ handleGameState }) {
+  const { t } = useTranslation();
+
   return (
     <Container>
       <Row>
         <Col>
-          <h2>Salsa or Bachata?</h2>
+          <h2>{t('Salsa or Bachata?')}</h2>
         </Col>
       </Row>
       <Row>
         <Col>
-          <Button color="primary" size="lg" onClick={() => handleGameState('playing')}>Play!</Button>
+          <Button color="primary" size="lg" onClick={() => handleGameState('playing')}>{t('Play!')}</Button>
         </Col>
       </Row>
     </Container>

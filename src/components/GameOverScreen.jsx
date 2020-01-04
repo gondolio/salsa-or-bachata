@@ -7,6 +7,7 @@ import {
   Row,
 } from 'reactstrap';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 import SpotifyPlayButton from './SpotifyPlayButton';
 
 function GameOverScreen({
@@ -15,27 +16,28 @@ function GameOverScreen({
   lastGenre,
   lastSpotifyUri,
 }) {
+  const { t } = useTranslation();
   let outputMessage;
   let buttonColor;
   if (playerWon) {
-    outputMessage = 'Correct! :D';
+    outputMessage = 'correct';
     buttonColor = 'success';
   } else {
-    outputMessage = 'Wrong :(';
+    outputMessage = 'wrong';
     buttonColor = 'danger';
   }
 
-  const lastGenreMessage = `(It was a ${_.startCase(lastGenre)} song)`;
+  const lastGenreMessage = t('answerFeedback', { genre: _.startCase(lastGenre) });
   return (
     <Container>
       <Row>
         <Col>
-          <h2>{outputMessage}</h2>
+          <h2>{t(outputMessage)}</h2>
         </Col>
       </Row>
       <Row>
         <Col>
-          <Button color={buttonColor} size="lg" onClick={() => handleGameState('playing')}>Play Again!</Button>
+          <Button color={buttonColor} size="lg" onClick={() => handleGameState('playing')}>{t('Play Again!')}</Button>
         </Col>
       </Row>
       <Row style={{ marginTop: '20px' }}>
