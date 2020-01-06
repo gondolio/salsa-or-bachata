@@ -6,8 +6,9 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    // we init with resources
     resources: {
+      // English first as it is the fallback language
+      // Everything else in ABC order
       en: {
         translations: {
           // Common
@@ -106,6 +107,50 @@ i18n
           answerFeedback: '({{genre}}の曲でした)',
           'Play Again!': 'もう一度!',
           'What type of song is playing?': 'どんなジャンルの曲が流れていますか？',
+        },
+      },
+      zhs: {
+        translations: {
+          Salsa: '莎莎',
+          Bachata: '吧差他', // fix
+          Merengue: '嚒人歌', // fix
+          Kizomba: '恪遵吧', // fix
+          Reggaeton: '热噶吨', // fix
+
+          'Salsa or Bachata?': '莎莎还是吧差他?',
+          'Play!': '开始!',
+
+          Options: '选择', // fix
+          'Choose Genres': '选择体裁', // fix
+          Done: '继续',
+
+          correct: '没错 :D!',
+          wrong: '错了 :(',
+          answerFeedback: '(是{{genre}}的歌)',
+          'Play Again!': '再玩!',
+          'What type of song is playing?': '这是什么体裁的歌?',
+        },
+      },
+      zht: {
+        translations: {
+          Salsa: '莎莎',
+          Bachata: '吧差他', // fix
+          Merengue: '嚒人歌', // fix
+          Kizomba: '恪遵吧', // fix
+          Reggaeton: '热噶吨', // fix
+
+          'Salsa or Bachata?': '莎莎還是吧差他?',
+          'Play!': '開始!',
+
+          Options: '選擇', // fix
+          'Choose Genres': '選擇體裁', // fix
+          Done: '繼續',
+
+          correct: '沒錯 :D!',
+          wrong: '錯了 :(',
+          answerFeedback: '(是{{genre}}的歌)',
+          'Play Again!': '再玩!',
+          'What type of song is playing?': '這是什麼體裁的歌?',
         },
       },
     },
