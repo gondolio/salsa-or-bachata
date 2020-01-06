@@ -10,6 +10,13 @@ i18n
     resources: {
       en: {
         translations: {
+          // Common
+          Salsa: 'Salsa',
+          Bachata: 'Bachata',
+          Merengue: 'Merengue',
+          Kizomba: 'Kizomba',
+          Reggaeton: 'Reggaeton',
+
           // StartScreen
           'Salsa or Bachata?': 'Salsa or Bachata?',
           'Play!': 'Play!',
@@ -31,6 +38,12 @@ i18n
       },
       es: {
         translations: {
+          Salsa: 'Salsa',
+          Bachata: 'Bachata',
+          Merengue: 'Merengue',
+          Kizomba: 'Kizomba',
+          Reggaeton: 'Reggaetón',
+
           'Salsa or Bachata?': 'Salsa o Bachata?',
           'Play!': 'Jugar!',
 
@@ -47,6 +60,12 @@ i18n
       },
       jp: {
         translations: {
+          Salsa: 'サルサ',
+          Bachata: 'バチャータ',
+          Merengue: 'メレンゲ',
+          Kizomba: 'キゾンバ', // check this
+          Reggaeton: 'レゲトン', // check this
+
           'Salsa or Bachata?': 'サルサか、バチャータか？',
           'Play!': '遊ぶ!',
 

@@ -27,7 +27,8 @@ function GameOverScreen({
     buttonColor = 'danger';
   }
 
-  const lastGenreMessage = t('answerFeedback', { genre: _.startCase(lastGenre) });
+  const lastGenreName = t(_.startCase(lastGenre));
+  const lastGenreMessage = t('answerFeedback', { genre: lastGenreName });
   return (
     <Container>
       <Row>

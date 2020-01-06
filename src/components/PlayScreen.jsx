@@ -42,6 +42,8 @@ class PlayScreen extends React.Component {
   }
 
   answerButtons() {
+    // eslint-disable-next-line react/prop-types
+    const { t } = this.props;
     const enabledGenres = this.props.enabledGenres();
 
     const buttons = enabledGenres.map((genre) => (
@@ -52,7 +54,7 @@ class PlayScreen extends React.Component {
         size="lg"
         onClick={() => this.checkAnswer(genre)}
       >
-        {_.startCase(genre)}
+        {t(_.startCase(genre))}
       </Button>
     ));
 

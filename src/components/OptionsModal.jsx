@@ -62,6 +62,9 @@ class OptionsModal extends React.Component {
   }
 
   optionButtons() {
+    // eslint-disable-next-line react/prop-types
+    const { t } = this.props;
+
     const buttons = Genres.sortedGenres().map((genre) => (
       <Button
         className={this.state.genreButtonIsEnabled[genre] ? '' : 'disabled'}
@@ -72,7 +75,7 @@ class OptionsModal extends React.Component {
         onClick={() => this.handleOptionButtonClick(genre)}
         outline={!this.state.genreButtonIsEnabled[genre]}
       >
-        {_.startCase(genre)}
+        {t(_.startCase(genre))}
       </Button>
     ));
 
@@ -88,6 +91,7 @@ class OptionsModal extends React.Component {
   render() {
     // eslint-disable-next-line react/prop-types
     const { t } = this.props;
+    
     return (
       <div style={{ marginTop: '20px' }}>
         <Button color="link" onClick={this.toggleModal}>{t('Options')}</Button>
