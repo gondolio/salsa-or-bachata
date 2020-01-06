@@ -58,6 +58,34 @@ i18n
           'What type of song is playing?': '¿Qué tipo de canción se está tocando?',
         },
       },
+      he: {
+        translations: {
+          // Common
+          Salsa: 'סלסה',
+          Bachata: "באצ'תה",
+          Merengue: 'מרנגה',
+          Kizomba: 'קיזומבה', // check this
+          Reggaeton: 'רגאייטון', // check this
+
+          // StartScreen
+          'Salsa or Bachata?': "?סלסה או באצ'תה",
+          'Play!': '!שחק',
+
+          // OptionsModal
+          Options: 'אפשרויות',
+          'Choose Genres': "בחר ז'אנרים",
+          Done: 'סיום',
+
+          // GameOverScreen
+          correct: '(: !נכון',
+          wrong: '): !לא נכון',
+          answerFeedback: '(זה היה שיר {{genre}})',
+          'Play Again!': '!שחק שוב',
+
+          // PlayScreen
+          'What type of song is playing?': '?איזה סוג של שיר מנגן',
+        },
+      },
       jp: {
         translations: {
           Salsa: 'サルサ',
