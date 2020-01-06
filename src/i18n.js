@@ -45,6 +45,22 @@ i18n
           'What type of song is playing?': '¿Qué tipo de canción se está tocando?',
         },
       },
+      jp: {
+        translations: {
+          'Salsa or Bachata?': 'サルサか、バチャータか？',
+          'Play!': '遊ぶ!',
+
+          Options: 'オプション',
+          'Choose Genres': 'ジャンルを選ぶ',
+          Done: 'オッケー',
+
+          correct: 'あった！（╹◡╹）',
+          wrong: 'あってない　(◞‸◟)',
+          answerFeedback: '({{genre}}の曲でした)',
+          'Play Again!': 'もう一度!',
+          'What type of song is playing?': 'どんなジャンルの曲が流れていますか？',
+        },
+      },
     },
     fallbackLng: 'en',
     debug: true,
