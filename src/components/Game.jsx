@@ -5,6 +5,7 @@ import StartScreen from './StartScreen';
 import PlayScreen from './PlayScreen';
 import GameOverScreen from './GameOverScreen';
 import OptionsModal from './OptionsModal';
+import LocaleSelector from './LocaleSelector';
 import * as Genres from '../util/GenreUtils';
 
 class Game extends React.Component {
@@ -76,18 +77,22 @@ class Game extends React.Component {
             genreIsEnabled={this.state.genreIsEnabled}
             setGenreIsEnabled={this.setGenreIsEnabled}
           />
+          <LocaleSelector />
         </>
       );
     }
 
     if (this.state.gameState === 'finished') {
       return (
-        <GameOverScreen
-          handleGameState={this.handleGameState}
-          playerWon={this.state.playerWon}
-          lastSpotifyUri={this.state.lastSpotifyUri}
-          lastGenre={this.state.lastGenre}
-        />
+        <>
+          <GameOverScreen
+            handleGameState={this.handleGameState}
+            playerWon={this.state.playerWon}
+            lastSpotifyUri={this.state.lastSpotifyUri}
+            lastGenre={this.state.lastGenre}
+          />
+          <LocaleSelector />
+        </>
       );
     }
 
@@ -98,6 +103,7 @@ class Game extends React.Component {
           genreIsEnabled={this.state.genreIsEnabled}
           setGenreIsEnabled={this.setGenreIsEnabled}
         />
+        <LocaleSelector />
       </>
     );
   }
