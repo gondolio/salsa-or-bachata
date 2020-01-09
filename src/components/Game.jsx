@@ -5,7 +5,7 @@ import StartScreen from './StartScreen';
 import PlayScreen from './PlayScreen';
 import GameOverScreen from './GameOverScreen';
 import OptionsModal from './OptionsModal';
-import LocaleSelector from './LocaleSelector';
+import LanguageSelector from './LanguageSelector';
 import * as Genres from '../util/GenreUtils';
 
 class Game extends React.Component {
@@ -77,7 +77,7 @@ class Game extends React.Component {
             genreIsEnabled={this.state.genreIsEnabled}
             setGenreIsEnabled={this.setGenreIsEnabled}
           />
-          <LocaleSelector />
+          <LanguageSelector />
         </>
       );
     }
@@ -91,7 +91,7 @@ class Game extends React.Component {
             lastSpotifyUri={this.state.lastSpotifyUri}
             lastGenre={this.state.lastGenre}
           />
-          <LocaleSelector />
+          <LanguageSelector />
         </>
       );
     }
@@ -103,7 +103,7 @@ class Game extends React.Component {
           genreIsEnabled={this.state.genreIsEnabled}
           setGenreIsEnabled={this.setGenreIsEnabled}
         />
-        <LocaleSelector />
+        <LanguageSelector />
       </>
     );
   }
