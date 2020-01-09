@@ -15,7 +15,6 @@ import _ from 'lodash';
 
 function LanguageSelector() {
   const { i18n } = useTranslation();
-  const currentLanguage = i18n.language || 'en';
   const languageCodeToName = {
     en: 'English',
     es: 'Español',
@@ -24,6 +23,8 @@ function LanguageSelector() {
     zhcn: '中文（简体）',
     zhhk: '中文（繁體）',
   };
+
+  const currentLanguage = _.has(languageCodeToName, i18n.language) ? i18n.language : 'en';
 
   const dropDownItems = _.keys(languageCodeToName).map((code) => (
     <DropdownItem
