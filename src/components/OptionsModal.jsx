@@ -91,40 +91,44 @@ class OptionsModal extends React.Component {
   render() {
     // eslint-disable-next-line react/prop-types
     const { t } = this.props;
-    
+
     return (
-      <div style={{ marginTop: '20px' }}>
-        <Button color="link" onClick={this.toggleModal}>{t('Options')}</Button>
-        <Modal
-          isOpen={this.state.isModalOpen}
-          size="sm"
-          centered
-          toggle={this.toggleModal}
-          onClosed={this.resetModal} // Don't want genre buttons to persist once modal closes
-        >
-          <form className="App" onSubmit={this.handleSubmit}>
-            <ModalHeader>{t('Choose Genres')}</ModalHeader>
-            <ModalBody>
-              <Container fluid>
-                <Row>
-                  <Col>
-                    {this.optionButtons()}
-                  </Col>
-                </Row>
-              </Container>
-            </ModalBody>
-            <ModalFooter className="no-border">
-              <Container fluid>
-                <Row className="justify-content-center">
-                  <Col>
-                    <Button color="primary" onClick={this.handleSubmit}>{t('Done')}</Button>
-                  </Col>
-                </Row>
-              </Container>
-            </ModalFooter>
-          </form>
-        </Modal>
-      </div>
+      <Container style={{ marginTop: '10px' }}>
+        <Row>
+          <Col>
+            <Button color="link" onClick={this.toggleModal}>{t('Options')}</Button>
+            <Modal
+              isOpen={this.state.isModalOpen}
+              size="sm"
+              centered
+              toggle={this.toggleModal}
+              onClosed={this.resetModal} // Don't want genre buttons to persist once modal closes
+            >
+              <form className="App" onSubmit={this.handleSubmit}>
+                <ModalHeader>{t('Choose Genres')}</ModalHeader>
+                <ModalBody>
+                  <Container fluid>
+                    <Row>
+                      <Col>
+                        {this.optionButtons()}
+                      </Col>
+                    </Row>
+                  </Container>
+                </ModalBody>
+                <ModalFooter className="no-border">
+                  <Container fluid>
+                    <Row className="justify-content-center">
+                      <Col>
+                        <Button color="primary" onClick={this.handleSubmit}>{t('Done')}</Button>
+                      </Col>
+                    </Row>
+                  </Container>
+                </ModalFooter>
+              </form>
+            </Modal>
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }
