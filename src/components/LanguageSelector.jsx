@@ -15,7 +15,7 @@ import _ from 'lodash';
 
 function LanguageSelector() {
   const { i18n } = useTranslation();
-  const currentLanguage = i18n.language;
+  const currentLanguage = i18n.language || 'en';
   const languageCodeToName = {
     en: 'English',
     es: 'Español',
