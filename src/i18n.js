@@ -130,7 +130,7 @@ i18n
           'What type of song is playing?': 'どんなジャンルの曲が流れていますか？',
         },
       },
-      zhcn: {
+      'zh-CN': {
         translations: {
           Salsa: '莎莎',
           Bachata: '巴恰塔',
@@ -152,15 +152,19 @@ i18n
           'What type of song is playing?': '这是什么类型的歌?',
         },
       },
-      zhhk: {
+      'zh-HK': {
         translations: traditionalChineseTranslations,
       },
-      zhtw: {
+      'zh-TW': {
         translations: traditionalChineseTranslations,
       },
     },
     fallbackLng: 'en',
     debug: true,
+
+    // Putting whitelist so only get language (e.g. 'en' instead of 'en-US')
+    // Not using load: 'languageOnly' because still want to differentiate zh-CN vs zh-HK/zh-TW
+    whitelist: ['en', 'es', 'he', 'jp', 'zh', 'zh-CN', 'zh-HK', 'zh-TW' ],
 
     // have a common namespace used around the full app
     ns: ['translations'],

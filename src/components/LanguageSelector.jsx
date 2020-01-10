@@ -12,26 +12,34 @@ import {
 import { IoMdGlobe } from 'react-icons/io';
 import _ from 'lodash';
 
+const languageCodesToNames = {
+  en: 'English',
+  es: 'Español',
+  he: 'עברית',
+  jp: '日本語',
+  'zh-CN': '中文（简体）',
+  'zh-HK': '中文（繁體）',
+};
+
+function LanguageCodeToName(languageCode) {
+  let lookupCode = languageCode;
+
+  if (lookupCode === 'zh-tw') {
+    lookupCode = 'zh-HK';
+  }
+
+  return _.get(languageCodesToNames, lookupCode, null);
+}
 
 function LanguageSelector() {
   const { i18n } = useTranslation();
-  const languageCodeToName = {
-    en: 'English',
-    es: 'Español',
-    he: 'עברית',
-    jp: '日本語',
-    zhcn: '中文（简体）',
-    zhhk: '中文（繁體）',
-  };
-
-  const currentLanguage = _.has(languageCodeToName, i18n.language) ? i18n.language : 'en';
-
-  const dropDownItems = _.keys(languageCodeToName).map((code) => (
+  const currentLanguage = LanguageCodeToName(i18n.language) ? i18n.language : 'en';
+  const dropDownItems = _.keys(languageCodesToNames).map((languageCode) => (
     <DropdownItem
-      onClick={() => i18n.changeLanguage(code)}
-      key={`${code} DropDownItem`}
+      onClick={() => i18n.changeLanguage(languageCode)}
+      key={`${languageCode} DropDownItem`}
     >
-      {languageCodeToName[code]}
+      {LanguageCodeToName(languageCode)}
     </DropdownItem>
   ));
 
@@ -42,7 +50,7 @@ function LanguageSelector() {
           <UncontrolledButtonDropdown>
             <DropdownToggle color="link" caret size="sm" style={{ color: 'gray' }}>
               <IoMdGlobe />
-              {` ${languageCodeToName[currentLanguage]}`}
+              {` ${LanguageCodeToName(currentLanguage)}`}
             </DropdownToggle>
             <DropdownMenu>
               {dropDownItems}
