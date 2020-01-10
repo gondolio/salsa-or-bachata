@@ -33,7 +33,8 @@ function LanguageCodeToName(languageCode) {
 
 function LanguageSelector() {
   const { i18n } = useTranslation();
-  const currentLanguage = LanguageCodeToName(i18n.language) ? i18n.language : 'en';
+  const fallbackLng = i18n.options.fallbackLng[0];
+  const currentLanguage = LanguageCodeToName(i18n.language) ? i18n.language : fallbackLng;
   const dropDownItems = _.keys(languageCodesToNames).map((languageCode) => (
     <DropdownItem
       onClick={() => i18n.changeLanguage(languageCode)}
