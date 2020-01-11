@@ -164,7 +164,7 @@ i18n
 
     // Putting whitelist so only get language (e.g. 'en' instead of 'en-US')
     // Not using load: 'languageOnly' because still want to differentiate zh-CN vs zh-HK/zh-TW
-    whitelist: ['en', 'es', 'he', 'jp', 'zh', 'zh-CN', 'zh-HK', 'zh-TW' ],
+    whitelist: ['en', 'es', 'he', 'jp', 'zh', 'zh-CN', 'zh-HK', 'zh-TW'],
 
     // have a common namespace used around the full app
     ns: ['translations'],
