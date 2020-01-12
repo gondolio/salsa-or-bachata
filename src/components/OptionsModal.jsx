@@ -1,5 +1,5 @@
 /* eslint-disable react/destructuring-assignment */
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Button,
   ButtonGroup,
@@ -13,68 +13,47 @@ import {
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
-import { withTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import * as Genres from '../util/GenreUtils';
 
-class OptionsModal extends React.Component {
-  state = {
-    isModalOpen: false,
-    genreButtonIsEnabled: this.props.genreIsEnabled,
+function OptionsModal(props) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [genreButtonIsEnabled, setGenreButtonIsEnabled] = useState(props.genreIsEnabled);
+
+  const { t } = useTranslation();
+
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
   };
 
-  toggleModal = this.toggleModal.bind(this);
+  const handleSubmit = () => {
+    toggleModal();
+    props.setGenreIsEnabled(genreButtonIsEnabled);
+  };
 
-  handleSubmit = this.handleSubmit.bind(this);
+  const handleOptionButtonClick = (genre) => {
+    const newGenreButtonIsEnabled = {
+      ...genreButtonIsEnabled,
+      [genre]: !genreButtonIsEnabled[genre],
+    };
 
-  optionButtons = this.optionButtons.bind(this);
+    // Only update if at least one genre remains enabled
+    if (_.includes(newGenreButtonIsEnabled, true)) {
+      setGenreButtonIsEnabled(newGenreButtonIsEnabled);
+    }
+  };
 
-  handleOptionButtonClick = this.handleOptionButtonClick.bind(this);
-
-  resetModal = this.resetModal.bind(this);
-
-
-  toggleModal() {
-    this.setState(
-      (prevState) => ({ isModalOpen: !prevState.isModalOpen }),
-    );
-  }
-
-  handleSubmit() {
-    this.toggleModal();
-    this.props.setGenreIsEnabled(this.state.genreButtonIsEnabled);
-  }
-
-  handleOptionButtonClick(genre) {
-    this.setState(
-      (prevState) => {
-        const newGenreButtonIsEnabled = {
-          ...prevState.genreButtonIsEnabled,
-          [genre]: !prevState.genreButtonIsEnabled[genre],
-        };
-
-        // Only update if at least one genre remains enabled
-        if (_.includes(newGenreButtonIsEnabled, true)) {
-          return ({ genreButtonIsEnabled: newGenreButtonIsEnabled });
-        }
-
-        return null;
-      },
-    );
-  }
-
-  optionButtons() {
+  const optionButtons = () => {
     // eslint-disable-next-line react/prop-types
-    const { t } = this.props;
-
     const buttons = Genres.sortedGenres().map((genre) => (
       <Button
-        className={this.state.genreButtonIsEnabled[genre] ? '' : 'disabled'}
+        className={genreButtonIsEnabled[genre] ? '' : 'disabled'}
         key={`${genre} answer button`}
         style={Genres.genreButtonStyle}
         color={Genres.genreColor(genre)}
         size="lg"
-        onClick={() => this.handleOptionButtonClick(genre)}
-        outline={!this.state.genreButtonIsEnabled[genre]}
+        onClick={() => handleOptionButtonClick(genre)}
+        outline={!genreButtonIsEnabled[genre]}
       >
         {t(_.startCase(genre))}
       </Button>
@@ -83,55 +62,50 @@ class OptionsModal extends React.Component {
     const buttonGroup = <ButtonGroup vertical>{buttons}</ButtonGroup>;
 
     return buttonGroup;
-  }
+  };
 
-  resetModal() {
-    this.setState({ genreButtonIsEnabled: this.props.genreIsEnabled });
-  }
+  const resetModal = () => {
+    setGenreButtonIsEnabled(props.genreIsEnabled);
+  };
 
-  render() {
-    // eslint-disable-next-line react/prop-types
-    const { t } = this.props;
-
-    return (
-      <Container style={{ marginTop: '10px' }}>
-        <Row>
-          <Col>
-            <Button color="link" onClick={this.toggleModal}>{t('Options')}</Button>
-            <Modal
-              isOpen={this.state.isModalOpen}
-              size="sm"
-              centered
-              toggle={this.toggleModal}
-              onClosed={this.resetModal} // Don't want genre buttons to persist once modal closes
-            >
-              <form className="App" onSubmit={this.handleSubmit}>
-                <ModalHeader>{t('Choose Genres')}</ModalHeader>
-                <ModalBody>
-                  <Container fluid>
-                    <Row>
-                      <Col>
-                        {this.optionButtons()}
-                      </Col>
-                    </Row>
-                  </Container>
-                </ModalBody>
-                <ModalFooter className="no-border">
-                  <Container fluid>
-                    <Row className="justify-content-center">
-                      <Col>
-                        <Button color="primary" onClick={this.handleSubmit}>{t('Done')}</Button>
-                      </Col>
-                    </Row>
-                  </Container>
-                </ModalFooter>
-              </form>
-            </Modal>
-          </Col>
-        </Row>
-      </Container>
-    );
-  }
+  return (
+    <Container style={{ marginTop: '10px' }}>
+      <Row>
+        <Col>
+          <Button color="link" onClick={toggleModal}>{t('Options')}</Button>
+          <Modal
+            isOpen={isModalOpen}
+            size="sm"
+            centered
+            toggle={toggleModal}
+            onClosed={resetModal} // Don't want genre buttons to persist once modal closes
+          >
+            <form className="App" onSubmit={handleSubmit}>
+              <ModalHeader>{t('Choose Genres')}</ModalHeader>
+              <ModalBody>
+                <Container fluid>
+                  <Row>
+                    <Col>
+                      {optionButtons()}
+                    </Col>
+                  </Row>
+                </Container>
+              </ModalBody>
+              <ModalFooter className="no-border">
+                <Container fluid>
+                  <Row className="justify-content-center">
+                    <Col>
+                      <Button color="primary" onClick={handleSubmit}>{t('Done')}</Button>
+                    </Col>
+                  </Row>
+                </Container>
+              </ModalFooter>
+            </form>
+          </Modal>
+        </Col>
+      </Row>
+    </Container>
+  );
 }
 
 OptionsModal.propTypes = {
@@ -143,4 +117,4 @@ OptionsModal.defaultProps = {
   genreIsEnabled: {},
 };
 
-export default withTranslation()(OptionsModal);
+export default OptionsModal;
