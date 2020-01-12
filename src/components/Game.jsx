@@ -9,21 +9,19 @@ import LanguageSelector from './LanguageSelector';
 import * as Genres from '../util/GenreUtils';
 
 class Game extends React.Component {
-  constructor(props) {
-    super(props);
+  state = {
+    gameState: 'starting',
+    playerWon: false,
+    genreIsEnabled: Genres.genreIsEnabledDefault(),
+    lastSpotifyUri: '',
+    lastGenre: '',
+  };
 
-    this.state = {
-      gameState: 'starting',
-      playerWon: false,
-      genreIsEnabled: Genres.genreIsEnabledDefault(),
-      lastSpotifyUri: '',
-      lastGenre: '',
-    };
+  handleGameState = this.handleGameState.bind(this);
 
-    this.handleGameState = this.handleGameState.bind(this);
-    this.setGenreIsEnabled = this.setGenreIsEnabled.bind(this);
-    this.enabledGenres = this.enabledGenres.bind(this);
-  }
+  setGenreIsEnabled = this.setGenreIsEnabled.bind(this);
+
+  enabledGenres = this.enabledGenres.bind(this);
 
   setGenreIsEnabled(genreIsEnabled) {
     this.setState({ genreIsEnabled });

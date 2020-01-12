@@ -17,20 +17,21 @@ import { withTranslation } from 'react-i18next';
 import * as Genres from '../util/GenreUtils';
 
 class OptionsModal extends React.Component {
-  constructor(props) {
-    super(props);
+  state = {
+    isModalOpen: false,
+    genreButtonIsEnabled: this.props.genreIsEnabled,
+  };
 
-    this.state = {
-      isModalOpen: false,
-      genreButtonIsEnabled: this.props.genreIsEnabled,
-    };
+  toggleModal = this.toggleModal.bind(this);
 
-    this.toggleModal = this.toggleModal.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.optionButtons = this.optionButtons.bind(this);
-    this.handleOptionButtonClick = this.handleOptionButtonClick.bind(this);
-    this.resetModal = this.resetModal.bind(this);
-  }
+  handleSubmit = this.handleSubmit.bind(this);
+
+  optionButtons = this.optionButtons.bind(this);
+
+  handleOptionButtonClick = this.handleOptionButtonClick.bind(this);
+
+  resetModal = this.resetModal.bind(this);
+
 
   toggleModal() {
     this.setState(
