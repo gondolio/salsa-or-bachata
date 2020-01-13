@@ -1,5 +1,5 @@
 /* eslint-disable react/destructuring-assignment */
-import React from 'react';
+import React, { useState } from 'react';
 import _ from 'lodash';
 import StartScreen from './StartScreen';
 import PlayScreen from './PlayScreen';
@@ -8,103 +8,82 @@ import OptionsModal from './OptionsModal';
 import LanguageSelector from './LanguageSelector';
 import * as Genres from '../util/GenreUtils';
 
-class Game extends React.Component {
-  state = {
-    gameState: 'starting',
-    playerWon: false,
-    genreIsEnabled: Genres.genreIsEnabledDefault(),
-    lastSpotifyUri: '',
-    lastGenre: '',
+function Game() {
+  const [gameState, setGameState] = useState('starting');
+  const [playerWon, setPlayerWon] = useState(false);
+  const [genreIsEnabled, setGenreIsEnabled] = useState(Genres.genreIsEnabledDefault());
+  const [lastSpotifyUri, setLastSpotifyUri] = useState('');
+  const [lastGenre, setLastGenre] = useState('');
+
+  const enabledGenres = () => (
+    Genres.sortedGenres(
+      _.keys(
+        _.pickBy(genreIsEnabled, _.identity),
+      ),
+    )
+  );
+
+  const handleGameState = (
+    newGameState,
+    {
+      newPlayerWon = playerWon,
+      newLastGenre = lastGenre,
+      newLastSpotifyUri = lastSpotifyUri,
+    } = {},
+  ) => {
+    setGameState(newGameState);
+    setPlayerWon(newPlayerWon);
+    setLastGenre(newLastGenre);
+    setLastSpotifyUri(newLastSpotifyUri);
   };
 
-  handleGameState = this.handleGameState.bind(this);
-
-  setGenreIsEnabled = this.setGenreIsEnabled.bind(this);
-
-  enabledGenres = this.enabledGenres.bind(this);
-
-  setGenreIsEnabled(genreIsEnabled) {
-    this.setState({ genreIsEnabled });
-  }
-
-  enabledGenres() {
-    return (
-      Genres.sortedGenres(
-        _.keys(
-          _.pickBy(this.state.genreIsEnabled, _.identity),
-        ),
-      )
-    );
-  }
-
-  handleGameState(
-    gameState,
-    {
-      playerWon = this.state.playerWon,
-      lastGenre = this.state.lastGenre,
-      lastSpotifyUri = this.state.lastSpotifyUri,
-    } = {},
-  ) {
-    this.setState(
-      {
-        gameState,
-        playerWon,
-        lastGenre,
-        lastSpotifyUri,
-      },
-    );
-  }
-
-
-  render() {
-    if (this.state.gameState === 'playing') {
-      return (
-        <>
-          <PlayScreen
-            handleGameState={this.handleGameState}
-            enabledGenres={this.enabledGenres}
-            key={JSON.stringify(this.state.genreIsEnabled)}
-            /* OptionsModal can change this.state.genreIsEnabled
-               When this happens we want PlayScreen to be reset.
-               Key therefore uses this.state.genreIsEnabled because
-               when a key changes, React will create a new component instance
-               rather than update the current one (see link below)
-               https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component */
-          />
-          <OptionsModal
-            genreIsEnabled={this.state.genreIsEnabled}
-            setGenreIsEnabled={this.setGenreIsEnabled}
-          />
-          <LanguageSelector />
-        </>
-      );
-    }
-
-    if (this.state.gameState === 'finished') {
-      return (
-        <>
-          <GameOverScreen
-            handleGameState={this.handleGameState}
-            playerWon={this.state.playerWon}
-            lastSpotifyUri={this.state.lastSpotifyUri}
-            lastGenre={this.state.lastGenre}
-          />
-          <LanguageSelector />
-        </>
-      );
-    }
-
+  if (gameState === 'playing') {
     return (
       <>
-        <StartScreen handleGameState={this.handleGameState} />
+        <PlayScreen
+          handleGameState={handleGameState}
+          enabledGenres={enabledGenres}
+          key={JSON.stringify(genreIsEnabled)}
+          /* OptionsModal can change this.state.genreIsEnabled
+              When this happens we want PlayScreen to be reset.
+              Key therefore uses this.state.genreIsEnabled because
+              when a key changes, React will create a new component instance
+              rather than update the current one (see link below)
+              https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component */
+        />
         <OptionsModal
-          genreIsEnabled={this.state.genreIsEnabled}
-          setGenreIsEnabled={this.setGenreIsEnabled}
+          genreIsEnabled={genreIsEnabled}
+          setGenreIsEnabled={setGenreIsEnabled}
         />
         <LanguageSelector />
       </>
     );
   }
+
+  if (gameState === 'finished') {
+    return (
+      <>
+        <GameOverScreen
+          handleGameState={handleGameState}
+          playerWon={playerWon}
+          lastSpotifyUri={lastSpotifyUri}
+          lastGenre={lastGenre}
+        />
+        <LanguageSelector />
+      </>
+    );
+  }
+
+  return (
+    <>
+      <StartScreen handleGameState={handleGameState} />
+      <OptionsModal
+        genreIsEnabled={genreIsEnabled}
+        setGenreIsEnabled={setGenreIsEnabled}
+      />
+      <LanguageSelector />
+    </>
+  );
 }
 
 export default Game;
