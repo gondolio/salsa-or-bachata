@@ -3,7 +3,12 @@
 You can see it live here:\
 https://salsaorbachata.com/
 
-
+These are some of the high level things used for this project:
+* React
+* Bootstrap
+* SCSS (to customize bootstrap)
+* i18next (for localization)
+* gh-pages (for quick deployment to GitHub Pages)
 
 Useful resources:
 * Spotify Related
