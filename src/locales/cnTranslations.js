@@ -5,6 +5,8 @@ export const zhcnTranslations = {
   Merengue: '梅伦格',
   Kizomba: '基宗巴',
   Reggaeton: '雷鬼冻',
+  scoreBoardCorrect: '对',
+  scoreBoardIncorrect: '错',
 
   // StartScreen
   'Salsa or Bachata?': '莎莎还是巴恰塔?',
@@ -32,6 +34,8 @@ export const zhhkTranslations = {
   Merengue: '梅倫格',
   Kizomba: '基宗巴',
   Reggaeton: '雷鬼凍',
+  scoreBoardCorrect: '對',
+  scoreBoardIncorrect: '錯',
 
   // StartScreen
   'Salsa or Bachata?': '莎莎還是巴恰塔?',
