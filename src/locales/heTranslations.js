@@ -5,6 +5,8 @@ export default {
   Merengue: 'מרנגה',
   Kizomba: 'קיזומבה',
   Reggaeton: 'רגאטון',
+  'Correct': 'נכון',
+  'Wrong': 'לא נכון',
 
   // StartScreen
   'Salsa or Bachata?': "?סלסה או באצ'תה",

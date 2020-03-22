@@ -5,6 +5,8 @@ export default {
   Merengue: 'Merengue',
   Kizomba: 'Kizomba',
   Reggaeton: 'Reggaetón',
+  'Correct': 'Correcta',
+  'Wrong': 'Incorrecto',
 
   // StartScreen
   'Salsa or Bachata?': 'Salsa o Bachata?',

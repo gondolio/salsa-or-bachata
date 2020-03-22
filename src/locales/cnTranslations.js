@@ -5,6 +5,8 @@ export const zhcnTranslations = {
   Merengue: '梅伦格',
   Kizomba: '基宗巴',
   Reggaeton: '雷鬼冻',
+  'Correct': '对',
+  'Wrong': '错',
 
   // StartScreen
   'Salsa or Bachata?': '莎莎还是巴恰塔?',
