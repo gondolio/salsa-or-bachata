@@ -1,5 +1,5 @@
 /* eslint-disable react/destructuring-assignment */
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import _ from 'lodash';
 import StartScreen from './StartScreen';
 import PlayScreen from './PlayScreen';
@@ -7,6 +7,7 @@ import GameOverScreen from './GameOverScreen';
 import OptionsModal from './OptionsModal';
 import LanguageSelector from './LanguageSelector';
 import * as Genres from '../util/GenreUtils';
+import ScoreBoard from './ScoreBoard';
 
 function Game() {
   const [gameState, setGameState] = useState('starting');
@@ -14,6 +15,8 @@ function Game() {
   const [genreIsEnabled, setGenreIsEnabled] = useState(Genres.genreIsEnabledDefault());
   const [lastSpotifyUri, setLastSpotifyUri] = useState('');
   const [lastGenre, setLastGenre] = useState('');
+  const correctCount = useRef(0);
+  const incorrectCount = useRef(0);
 
   function enabledGenres() {
     return Genres.sortedGenres(
@@ -51,6 +54,10 @@ function Game() {
               rather than update the current one (see link below)
               https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component */
         />
+        <ScoreBoard
+          correctCount={correctCount.current}
+          incorrectCount={incorrectCount.current}
+        />
         <OptionsModal
           genreIsEnabled={genreIsEnabled}
           setGenreIsEnabled={setGenreIsEnabled}
@@ -61,6 +68,13 @@ function Game() {
   }
 
   if (gameState === 'finished') {
+    // update the scores on the scoreboard
+    if (playerWon) {
+      correctCount.current += 1;
+    } else {
+      incorrectCount.current += 1;
+    }
+
     return (
       <>
         <GameOverScreen
@@ -68,6 +82,10 @@ function Game() {
           playerWon={playerWon}
           lastSpotifyUri={lastSpotifyUri}
           lastGenre={lastGenre}
+        />
+        <ScoreBoard
+          correctCount={correctCount.current}
+          incorrectCount={incorrectCount.current}
         />
         <LanguageSelector />
       </>
