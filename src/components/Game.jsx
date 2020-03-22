@@ -46,13 +46,6 @@ function Game() {
         <PlayScreen
           handleGameState={handleGameState}
           enabledGenres={enabledGenres}
-          key={JSON.stringify(genreIsEnabled)}
-          /*  OptionsModal can change this.state.genreIsEnabled
-              When this happens we want PlayScreen to be reset.
-              Key therefore uses this.state.genreIsEnabled because
-              when a key changes, React will create a new component instance
-              rather than update the current one (see link below)
-              https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component */
         />
         <ScoreBoard
           correctCount={correctCount.current}
@@ -91,6 +84,8 @@ function Game() {
       </>
     );
   }
+
+  console.log('no ifs');
 
   return (
     <>
