@@ -92,8 +92,6 @@ function Game() {
     );
   }
 
-  console.log('no ifs');
-
   return (
     <>
       <StartScreen handleGameState={handleGameState} />
