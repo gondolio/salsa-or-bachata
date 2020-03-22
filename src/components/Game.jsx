@@ -15,9 +15,8 @@ function Game() {
   const [genreIsEnabled, setGenreIsEnabled] = useState(Genres.genreIsEnabledDefault());
   const [lastSpotifyUri, setLastSpotifyUri] = useState('');
   const [lastGenre, setLastGenre] = useState('');
-  var correctCount = useRef(0);
-  var wrongCount = useRef(0);
-  // const [wrongCount, setWrongCount] = useRef(0);
+  const correctCount = useRef(0);
+  const incorrectCount = useRef(0);
 
   function enabledGenres() {
     return Genres.sortedGenres(
@@ -48,7 +47,10 @@ function Game() {
           handleGameState={handleGameState}
           enabledGenres={enabledGenres}
         />
-        <ScoreBoard correct={correctCount.current} wrong={wrongCount.current} />
+        <ScoreBoard
+          correctCount={correctCount.current}
+          incorrectCount={incorrectCount.current}
+        />
         <OptionsModal
           genreIsEnabled={genreIsEnabled}
           setGenreIsEnabled={setGenreIsEnabled}
@@ -59,12 +61,12 @@ function Game() {
   }
 
   if (gameState === 'finished') {
-
     // update the scores on the scoreboard
-    if (playerWon) 
-      correctCount.current = correctCount.current + 1; 
-    else 
-      wrongCount.current = wrongCount.current + 1; 
+    if (playerWon) {
+      correctCount.current += 1;
+    } else {
+      incorrectCount.current += 1;
+    }
 
     return (
       <>
@@ -74,7 +76,10 @@ function Game() {
           lastSpotifyUri={lastSpotifyUri}
           lastGenre={lastGenre}
         />
-        <ScoreBoard correct={correctCount.current} wrong={wrongCount.current} />
+        <ScoreBoard
+          correctCount={correctCount.current}
+          incorrectCount={incorrectCount.current}
+        />
         <LanguageSelector />
       </>
     );
