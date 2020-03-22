@@ -11,6 +11,7 @@
       "node": true
     },
     "rules": {
-      "react/state-in-constructor": [2, "never"]
+      "react/state-in-constructor": [2, "never"],
+      "linebreak-style": 0
     }
   }  
