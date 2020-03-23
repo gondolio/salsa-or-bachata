@@ -72,7 +72,7 @@ function OptionsModal(props) {
     <Container style={{ marginTop: '10px' }}>
       <Row>
         <Col>
-          <Button color="link" onClick={toggleModal}>{t('Options')}</Button>
+          <Button color="link" onClick={toggleModal}>{t('Choose Genres')}</Button>
           <Modal
             isOpen={isModalOpen}
             size="sm"
