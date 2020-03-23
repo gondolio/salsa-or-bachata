@@ -28,7 +28,10 @@ function OptionsModal(props) {
 
   const handleSubmit = () => {
     toggleModal();
-    props.setGenreIsEnabled(genreButtonIsEnabled);
+    // Only call setter if something changed as genre change will reset the scoreboard
+    if (!_.isEqual(genreButtonIsEnabled, props.genreIsEnabled)) {
+      props.handleGenreIsEnabledChange(genreButtonIsEnabled);
+    }
   };
 
   const handleOptionButtonClick = (genre) => {
@@ -110,7 +113,7 @@ function OptionsModal(props) {
 
 OptionsModal.propTypes = {
   genreIsEnabled: PropTypes.shape({}),
-  setGenreIsEnabled: PropTypes.func.isRequired,
+  handleGenreIsEnabledChange: PropTypes.func.isRequired,
 };
 
 OptionsModal.defaultProps = {

@@ -40,6 +40,13 @@ function Game() {
     setLastSpotifyUri(newLastSpotifyUri);
   }
 
+  function handleGenreIsEnabledChange(newGenreIsEnabled) {
+    // reset the scoreboard if the genre changes
+    correctCount.current = 0;
+    incorrectCount.current = 0;
+    setGenreIsEnabled(newGenreIsEnabled);
+  }
+
   if (gameState === 'playing') {
     return (
       <>
@@ -60,7 +67,7 @@ function Game() {
         />
         <OptionsModal
           genreIsEnabled={genreIsEnabled}
-          setGenreIsEnabled={setGenreIsEnabled}
+          handleGenreIsEnabledChange={handleGenreIsEnabledChange}
         />
         <LanguageSelector />
       </>
@@ -97,7 +104,7 @@ function Game() {
       <StartScreen handleGameState={handleGameState} />
       <OptionsModal
         genreIsEnabled={genreIsEnabled}
-        setGenreIsEnabled={setGenreIsEnabled}
+        handleGenreIsEnabledChange={handleGenreIsEnabledChange}
       />
       <LanguageSelector />
     </>
