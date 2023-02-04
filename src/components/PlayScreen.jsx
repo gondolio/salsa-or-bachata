@@ -75,7 +75,7 @@ function PlayScreen(props) {
         </Row>
         <Row>
           <Col>
-            <SpotifyPlayButton spotifyUri={spotifyUri} tiny />
+            <SpotifyPlayButton spotifyUri={spotifyUri} />
           </Col>
         </Row>
       </Container>
